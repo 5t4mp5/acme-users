@@ -1,0 +1,32 @@
+{
+  "name": "react-basic-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "db.js",
+  "dependencies": {
+    "@types/react": "^16.8.14",
+    "@types/react-dom": "^16.8.4",
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11",
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.4.4"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "postinstall": "npm run webpack",
+    "webpack": "webpack",
+    "webpack:dev": "npm run webpack -- --mode=development --watch",
+    "start:dev": "npm run webpack:dev & nodemon server.js --ignore src/ --ignore dist/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
