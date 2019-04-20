@@ -1,8 +1,9 @@
 import * as React from "react";
 import axios from "axios";
 import { number } from "prop-types";
+import Users from "./Users";
 
-interface User {
+export interface User {
     id: string;
     firstName: string;
     lastName: string;
@@ -37,37 +38,7 @@ class Main extends React.Component<{}, State> {
         return(
             <div className="container">
                 <h1>Acme Users</h1>
-                <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Middle Name</th>
-                        <th>Email</th>
-                        <th>Title</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        {
-                            users.map(user => (
-                                <tr key={user.id}>
-                                    <td>{user.firstName}</td>
-                                    <td>{user.lastName}</td>
-                                    <td>{user.middleName}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.title}</td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
-                {/* <ul className="list-group">
-                    {
-                        this.state.users.map(user => (
-                            <li key={user.id} className="list-group-item">{user.firstName} {user.lastName}</li>
-                        ))
-                    }
-                </ul> */}
+                <Users users={users} />
             </div>
         );
     }
