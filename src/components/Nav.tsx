@@ -24,7 +24,7 @@ const Nav = ({ location, history }: NavProps) => {
         <Link
           to="/users"
           className={`nav-link ${
-            location.pathname.endsWith("users") ? "active" : ""
+            location.pathname.includes("users") ? "active" : ""
           }`}
         >
           Users

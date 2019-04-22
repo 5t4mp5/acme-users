@@ -1,36 +1,43 @@
 import * as React from "react";
 import { User as UserInterface } from "./Main";
+import Pager from "./Pager";
 
 interface UsersProps {
   users: UserInterface[];
-  match: object;
-  location: object;
+  match: { params: { pageId: string } };
+  history: { push: Function };
+  count: number;
+  page: number;
 }
 
-const Users = ({ users, match, location }: UsersProps) => {
+const Users = (props: UsersProps) => {
+  const { match, history, count, page, users } = props;
   return (
-    <table className="table table-striped">
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Middle Name</th>
-          <th>Email</th>
-          <th>Title</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map(user => (
-          <tr key={user.id}>
-            <td>{user.firstName}</td>
-            <td>{user.lastName}</td>
-            <td>{user.middleName}</td>
-            <td>{user.email}</td>
-            <td>{user.title}</td>
+    <div>
+      <Pager match={match} history={history} count={count} page={page} />
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Middle Name</th>
+            <th>Email</th>
+            <th>Title</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {users.map(user => (
+            <tr key={user.id}>
+              <td>{user.firstName}</td>
+              <td>{user.lastName}</td>
+              <td>{user.middleName}</td>
+              <td>{user.email}</td>
+              <td>{user.title}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
