@@ -4,17 +4,17 @@ import Pager from "./Pager";
 
 interface UsersProps {
   users: UserInterface[];
-  match: { params: { pageId: string } };
+  match: { params: { pageId: string, srchVal: string } };
   history: { push: Function };
+  location: { pathname: string };
   count: number;
-  page: number;
 }
 
 const Users = (props: UsersProps) => {
-  const { match, history, count, page, users } = props;
+  const { match, history, location, count, users } = props;
   return (
     <div>
-      <Pager match={match} history={history} count={count} page={page} />
+      <Pager match={match} history={history} count={count} location={location} />
       <table className="table table-striped">
         <thead>
           <tr>

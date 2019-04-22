@@ -63,9 +63,15 @@ class Main extends React.Component<MainProps, State> {
         <Route component={Nav} />
         <Switch>
           <Route
-            path={"/users/:pageId?" || "/users/search/:srchVal"}
+            path={"/users/search/:srchVal/:pageId?"}
             render={(props) => (
-              <Users users={users} match={props.match} history={props.history} count={this.state.count} page={this.state.page} />
+              <Users users={users} match={props.match} history={props.history} count={this.state.count} location={props.location} />
+            )}
+          />
+          <Route
+            path={"/users/:pageId?"}
+            render={(props) => (
+              <Users users={users} match={props.match} history={props.history} count={this.state.count} location={props.location} />
             )}
           />
           <Route path="/" component={Home} />
