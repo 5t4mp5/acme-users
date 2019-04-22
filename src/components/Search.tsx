@@ -7,6 +7,7 @@ interface SearchState {
 interface SearchProps {
   history: { push: Function };
   location: { pathname: string };
+  match: { params: { srchVal: string } };
 }
 
 class Search extends React.Component<SearchProps, SearchState> {
@@ -30,6 +31,13 @@ class Search extends React.Component<SearchProps, SearchState> {
       : !this.props.location.pathname.includes("search") &&
           !this.state.input.length;
   };
+  loadInput = () => {
+    if(this.props.match.params.srchVal)
+      this.setState({ input: this.props.match.params.srchVal })
+  };
+  componentDidMount(){
+    this.loadInput();
+  }
   render() {
     return (
       <div className="m-2">
