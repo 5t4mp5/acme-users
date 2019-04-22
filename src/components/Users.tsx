@@ -1,6 +1,7 @@
 import * as React from "react";
 import { User as UserInterface } from "./Main";
 import Pager from "./Pager";
+import Search from "./Search";
 
 interface UsersProps {
   users: UserInterface[];
@@ -15,6 +16,7 @@ const Users = (props: UsersProps) => {
   return (
     <div>
       <Pager match={match} history={history} count={count} location={location} />
+      <Search history={history} />
       <table className="table table-striped">
         <thead>
           <tr>
