@@ -16,7 +16,7 @@ const Users = (props: UsersProps) => {
   return (
     <div>
       <Pager match={match} history={history} count={count} location={location} />
-      <Search history={history} />
+      <Search history={history} location={location} />
       <table className="table table-striped">
         <thead>
           <tr>
