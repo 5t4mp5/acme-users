@@ -12,34 +12,7 @@ interface UsersProps {
   count: number;
 }
 
-const highlight = (input: string, srchVal: string) => {
-  const srchLen: number = srchVal.length;
-  let inner = [];
-  let current: number = 0;
-  while (current < input.length) {
-    const thisSlice = input.slice(current, current + srchLen);
-    if (thisSlice.toLowerCase() === srchVal.toLowerCase()) {
-      inner.push(
-        <span
-          className="hilite"
-          style={{ backgroundColor: "yellow" }}
-          key={`${thisSlice}${current}`}
-        >
-          {thisSlice}
-        </span>
-      );
-      current += srchLen;
-    } else {
-      inner.push(input[current]);
-      current++;
-    }
-  }
-  console.log(inner);
-  return <div>{inner}</div>;
-};
-
-const Users = (props: UsersProps) => {
-  const { match, history, location, count, users } = props;
+const Users = ({ match, history, location, count, users }: UsersProps) => {
   return (
     <div>
       <Pager
@@ -65,35 +38,35 @@ const Users = (props: UsersProps) => {
               <td>
                 <div>
                   {match.params.srchVal
-                    ? highlight(user.firstName, match.params.srchVal)
+                    ? <Hilite input={user.firstName} srchVal={match.params.srchVal} />
                     : user.firstName}
                 </div>
               </td>
               <td>
                 <div>
                   {match.params.srchVal
-                    ? highlight(user.lastName, match.params.srchVal)
+                    ? <Hilite input={user.lastName} srchVal={match.params.srchVal} />
                     : user.lastName}
                 </div>
               </td>
               <td>
                 <div>
                   {match.params.srchVal
-                    ? highlight(user.middleName, match.params.srchVal)
+                    ? <Hilite input={user.middleName} srchVal={match.params.srchVal} />
                     : user.middleName}
                 </div>
               </td>
               <td>
                 <div>
                   {match.params.srchVal
-                    ? highlight(user.email, match.params.srchVal)
+                    ? <Hilite input={user.email} srchVal={match.params.srchVal} />
                     : user.email}
                 </div>
               </td>
               <td>
                 <div>
                   {match.params.srchVal
-                    ? highlight(user.title, match.params.srchVal)
+                    ? <Hilite input={user.title} srchVal={match.params.srchVal} />
                     : user.title}
                 </div>
               </td>

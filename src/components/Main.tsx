@@ -20,14 +20,14 @@ interface MainProps {
   history: { push: Function }
 }
 
-interface State {
+interface MainState {
   users: User[];
   count: number;
   page: number;
   errors: object[];
 }
 
-class Main extends React.Component<MainProps, State> {
+class Main extends React.Component<MainProps, MainState> {
   constructor(props: MainProps) {
     super(props);
     this.state = {
@@ -38,7 +38,7 @@ class Main extends React.Component<MainProps, State> {
     };
   }
   load = () => {
-    const { location, match } = this.props;
+    const { location } = this.props;
 
     if (location.pathname.includes("users")) {
       axios
@@ -56,7 +56,7 @@ class Main extends React.Component<MainProps, State> {
       this.load();
   }
   render() {
-    const { users } = this.state;
+    const { users, count } = this.state;
     return (
       <div className="container">
         <h1>Acme Users</h1>
@@ -65,13 +65,13 @@ class Main extends React.Component<MainProps, State> {
           <Route
             path={"/users/search/:srchVal/:pageId?"}
             render={(props) => (
-              <Users users={users} match={props.match} history={props.history} count={this.state.count} location={props.location} />
+              <Users users={users} match={props.match} history={props.history} count={count} location={props.location} />
             )}
           />
           <Route
             path={"/users/:pageId?"}
             render={(props) => (
-              <Users users={users} match={props.match} history={props.history} count={this.state.count} location={props.location} />
+              <Users users={users} match={props.match} history={props.history} count={count} location={props.location} />
             )}
           />
           <Route path="/" component={Home} />
