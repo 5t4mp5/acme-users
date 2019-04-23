@@ -1,6 +1,9 @@
-var express = require('express');
+"use strict";
+exports.__esModule = true;
+// const express = require('express');
+var express = require("express");
 var app = express();
-var path = require('path');
+var path = require("path");
 var port = process.env.PORT || 3000;
 app.get('/app.js', function (req, res) { return res.sendFile(path.join(__dirname, 'dist', 'bundle.js')); });
 app.get('/', function (req, res) { return res.sendFile(path.join(__dirname, 'index.html')); });
