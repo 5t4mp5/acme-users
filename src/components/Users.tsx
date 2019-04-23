@@ -12,14 +12,17 @@ interface UsersProps {
   count: number;
 }
 
-const Users = ({ match, history, location, count, users }: UsersProps) => {
+const Users = ({
+  match,
+  history,
+  location,
+  count,
+  users
+}: UsersProps): JSX.Element => {
+  if (!users.length) return <h2>No users found.</h2>;
   return (
     <div>
-      <Pager
-        match={match}
-        history={history}
-        count={count}
-      />
+      <Pager match={match} history={history} count={count} />
       <Search history={history} location={location} match={match} />
       <table className="table table-striped">
         <thead>
@@ -36,37 +39,56 @@ const Users = ({ match, history, location, count, users }: UsersProps) => {
             <tr key={user.id}>
               <td>
                 <div>
-                  {match.params.srchVal
-                    ? <Hilite input={user.firstName} srchVal={match.params.srchVal} />
-                    : user.firstName}
+                  {match.params.srchVal ? (
+                    <Hilite
+                      input={user.firstName}
+                      srchVal={match.params.srchVal}
+                    />
+                  ) : (
+                    user.firstName
+                  )}
                 </div>
               </td>
               <td>
                 <div>
-                  {match.params.srchVal
-                    ? <Hilite input={user.lastName} srchVal={match.params.srchVal} />
-                    : user.lastName}
+                  {match.params.srchVal ? (
+                    <Hilite
+                      input={user.lastName}
+                      srchVal={match.params.srchVal}
+                    />
+                  ) : (
+                    user.lastName
+                  )}
                 </div>
               </td>
               <td>
                 <div>
-                  {match.params.srchVal
-                    ? <Hilite input={user.middleName} srchVal={match.params.srchVal} />
-                    : user.middleName}
+                  {match.params.srchVal ? (
+                    <Hilite
+                      input={user.middleName}
+                      srchVal={match.params.srchVal}
+                    />
+                  ) : (
+                    user.middleName
+                  )}
                 </div>
               </td>
               <td>
                 <div>
-                  {match.params.srchVal
-                    ? <Hilite input={user.email} srchVal={match.params.srchVal} />
-                    : user.email}
+                  {match.params.srchVal ? (
+                    <Hilite input={user.email} srchVal={match.params.srchVal} />
+                  ) : (
+                    user.email
+                  )}
                 </div>
               </td>
               <td>
                 <div>
-                  {match.params.srchVal
-                    ? <Hilite input={user.title} srchVal={match.params.srchVal} />
-                    : user.title}
+                  {match.params.srchVal ? (
+                    <Hilite input={user.title} srchVal={match.params.srchVal} />
+                  ) : (
+                    user.title
+                  )}
                 </div>
               </td>
             </tr>

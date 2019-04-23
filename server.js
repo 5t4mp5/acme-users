@@ -1,6 +1,5 @@
 "use strict";
 exports.__esModule = true;
-// const express = require('express');
 var express = require("express");
 var app = express();
 var path = require("path");
