@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Users from "./Users";
 import Home from "./Home";
 import Nav from "./Nav";
+import { string } from "prop-types";
 
 export interface User {
   id: string;
@@ -23,7 +24,7 @@ interface MainProps {
 interface MainState {
   users: User[];
   count: number;
-  errors: object[];
+  error: string;
 }
 
 class Main extends React.Component<MainProps, MainState> {
@@ -32,7 +33,7 @@ class Main extends React.Component<MainProps, MainState> {
     this.state = {
       users: [],
       count: null,
-      errors: []
+      error: ""
     };
   }
   load = (): void => {
@@ -43,7 +44,7 @@ class Main extends React.Component<MainProps, MainState> {
         .get(`https://acme-users-api.herokuapp.com/api${location.pathname}`)
         .then(response => response.data)
         .then(data => this.setState({ users: data.users, count: data.count }))
-        .catch(e => this.setState({ errors: e.response.data.errors }));
+        .catch(e => this.setState({ error: e.response.statusText }));
     }
   };
   componentDidMount() {
@@ -86,6 +87,9 @@ class Main extends React.Component<MainProps, MainState> {
           />
           <Route path="/" component={Home} />
         </Switch>
+        {this.state.error ? (
+          <div className="alert alert-danger">{this.state.error}</div>
+        ) : null}
       </div>
     );
   }
