@@ -1,13 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import Users from "./Users";
 
-interface NavProps {
-  location: { pathname: string };
-  history: object;
-}
-
-const Nav = ({ location, history }: NavProps) => {
+const Nav = ({ location }: { location: { pathname: string } }) => {
   return (
     <ul className="nav nav-tabs">
       <li className="nav-item">

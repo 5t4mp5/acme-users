@@ -17,13 +17,12 @@ export interface User {
 interface MainProps {
   location: { pathname: string };
   match: { params: { pageId: string } };
-  history: { push: Function }
+  history: { push: Function };
 }
 
 interface MainState {
   users: User[];
   count: number;
-  page: number;
   errors: object[];
 }
 
@@ -33,7 +32,6 @@ class Main extends React.Component<MainProps, MainState> {
     this.state = {
       users: [],
       count: null,
-      page: null,
       errors: []
     };
   }
@@ -64,14 +62,26 @@ class Main extends React.Component<MainProps, MainState> {
         <Switch>
           <Route
             path={"/users/search/:srchVal/:pageId?"}
-            render={(props) => (
-              <Users users={users} match={props.match} history={props.history} count={count} location={props.location} />
+            render={props => (
+              <Users
+                users={users}
+                match={props.match}
+                history={props.history}
+                count={count}
+                location={props.location}
+              />
             )}
           />
           <Route
             path={"/users/:pageId?"}
-            render={(props) => (
-              <Users users={users} match={props.match} history={props.history} count={count} location={props.location} />
+            render={props => (
+              <Users
+                users={users}
+                match={props.match}
+                history={props.history}
+                count={count}
+                location={props.location}
+              />
             )}
           />
           <Route path="/" component={Home} />

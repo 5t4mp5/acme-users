@@ -4,17 +4,15 @@ import { Link } from "react-router-dom";
 interface PagerProps {
   history: { push: Function };
   match: { params: { pageId: string; srchVal: string } };
-  location: { pathname: string };
   count: number;
 }
 
-const Pager = (props: PagerProps) => {
-  const { count, match, history, location }: PagerProps = props;
+const Pager = ({ count, match, history }: PagerProps) => {
   const page: number = +match.params.pageId;
   const pageCount: number = Math.ceil(count / 50);
   const first: boolean = !page;
   const last: boolean = page === pageCount - 1;
-  const basePath: string = location.pathname.includes("search")
+  const basePath: string = match.params.srchVal
     ? `/users/search/${match.params.srchVal}`
     : "/users";
   return (

@@ -1,16 +1,12 @@
 import * as React from "react";
 
-interface SearchState {
-  input: string;
-}
-
 interface SearchProps {
   history: { push: Function };
   location: { pathname: string };
   match: { params: { srchVal: string } };
 }
 
-class Search extends React.Component<SearchProps, SearchState> {
+class Search extends React.Component<SearchProps, { input: string }> {
   constructor(props: SearchProps) {
     super(props);
     this.state = { input: "" };
@@ -18,12 +14,16 @@ class Search extends React.Component<SearchProps, SearchState> {
   handleChange = (evt: { target: { value: string } }): void => {
     this.setState({ input: evt.target.value });
   };
-  handleSubmit = (): void => {
+  handleSubmit = (evt: { preventDefault: Function }): void => {
+    evt.preventDefault();
     this.props.history.push(`/users/search/${this.state.input}`);
   };
   handleClear = (): void => {
-    this.setState({ input: "" });
-    this.props.history.push("/users");
+    if(!this.props.location.pathname.endsWith("users")){
+      this.props.history.push("/users");
+    } else {
+      this.setState({ input: "" });
+    }
   };
   disabled = (button: string): boolean => {
     return button === "submit"
@@ -34,13 +34,18 @@ class Search extends React.Component<SearchProps, SearchState> {
   loadInput = () => {
     if(this.props.match.params.srchVal)
       this.setState({ input: this.props.match.params.srchVal })
+    else this.setState({ input: "" });
   };
   componentDidMount(){
     this.loadInput();
   }
+  componentDidUpdate(prevProps: SearchProps){
+    if(prevProps.match.params.srchVal !== this.props.match.params.srchVal)
+      this.loadInput();
+  }
   render() {
     return (
-      <div className="m-2">
+      <form className="m-2" onSubmit={this.handleSubmit}>
         <div className="input-group">
           <input
             type="text"
@@ -51,9 +56,8 @@ class Search extends React.Component<SearchProps, SearchState> {
           />
           <div className="input-group-append" style={{ marginLeft: "2px" }}>
             <button
-              type="button"
+              type="submit"
               className="btn btn-primary"
-              onClick={this.handleSubmit}
               disabled={this.disabled("search")}
             >
               Go
@@ -68,7 +72,7 @@ class Search extends React.Component<SearchProps, SearchState> {
             </button>
           </div>
         </div>
-      </div>
+      </form>
     );
   }
 }

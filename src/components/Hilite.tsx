@@ -5,9 +5,9 @@ interface HiliteProps {
     srchVal: string;
 }
 
-const Hilite = ({ input, srchVal }: HiliteProps) => {
+const Hilite = ({ input, srchVal }: HiliteProps): JSX.Element => {
   const srchLen: number = srchVal.length;
-  let inner = [];
+  let inner: (JSX.Element|string)[] = [];
   let current: number = 0;
   while (current < input.length) {
     const thisSlice = input.slice(current, current + srchLen);

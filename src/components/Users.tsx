@@ -19,7 +19,6 @@ const Users = ({ match, history, location, count, users }: UsersProps) => {
         match={match}
         history={history}
         count={count}
-        location={location}
       />
       <Search history={history} location={location} match={match} />
       <table className="table table-striped">
