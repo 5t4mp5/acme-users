@@ -2,8 +2,9 @@
   "name": "react-basic-template",
   "version": "1.0.0",
   "description": "",
-  "main": "db.js",
+  "main": "server.ts",
   "dependencies": {
+    "@types/node": "^11.13.7",
     "@types/react": "^16.8.14",
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.2",
@@ -27,7 +28,7 @@
     "postinstall": "npm run webpack",
     "webpack": "webpack",
     "webpack:dev": "npm run webpack -- --mode=development --watch",
-    "start:dev": "npm run webpack:dev & nodemon server.js --ignore src/ --ignore dist/"
+    "start:dev": "npm run webpack:dev & tsc server.ts &&  nodemon server.js --ignore src/ --ignore dist/"
   },
   "keywords": [],
   "author": "",
