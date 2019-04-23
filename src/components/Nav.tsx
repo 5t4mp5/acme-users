@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-const Nav = ({ location }: { location: { pathname: string } }) => {
+const Nav = ({ location }: { location: { pathname: string } }): JSX.Element => {
   return (
     <ul className="nav nav-tabs">
       <li className="nav-item">

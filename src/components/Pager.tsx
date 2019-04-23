@@ -7,7 +7,7 @@ interface PagerProps {
   count: number;
 }
 
-const Pager = ({ count, match, history }: PagerProps) => {
+const Pager = ({ count, match, history }: PagerProps): JSX.Element => {
   const page: number = +match.params.pageId;
   const pageCount: number = Math.ceil(count / 50);
   const first: boolean = !page;

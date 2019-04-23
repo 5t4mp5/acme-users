@@ -35,7 +35,7 @@ class Main extends React.Component<MainProps, MainState> {
       errors: []
     };
   }
-  load = () => {
+  load = (): void => {
     const { location } = this.props;
 
     if (location.pathname.includes("users")) {

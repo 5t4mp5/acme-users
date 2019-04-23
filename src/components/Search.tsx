@@ -31,7 +31,7 @@ class Search extends React.Component<SearchProps, { input: string }> {
       : !this.props.location.pathname.includes("search") &&
           !this.state.input.length;
   };
-  loadInput = () => {
+  loadInput = (): void => {
     if(this.props.match.params.srchVal)
       this.setState({ input: this.props.match.params.srchVal })
     else this.setState({ input: "" });
